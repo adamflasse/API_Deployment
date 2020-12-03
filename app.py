@@ -1,9 +1,16 @@
 
+
 ######## import packages
 
 from flask import Flask, render_template, redirect, url_for, request, session, jsonify
 from flask_session import Session
 import requests
+
+# import preprocess data function from preprocessing folder
+from preprocessing.cleaning_data import preprocess
+
+# print shape of Datasets
+print(preprocess('./preprocessing/def_dataset.csv'))
 
 """
 This answers the following question:
