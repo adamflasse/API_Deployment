@@ -1,0 +1,17 @@
+{
+	"13573": {
+		"property_subtype": "Other",
+		"area": 139,
+		"rooms_number": 3,
+		"equipped_kitchen_has": false,
+		"garden_area": 0,
+		"terrace_area": 0,
+		"furnished": false,
+		"swimming_pool_has": true,
+		"land_surface": 0,
+		"building_state_agg": "NEW",
+		"open_fire": false,
+		"longitude": 3.7339732,
+		"latitude": 51.0384508
+	}
+}
