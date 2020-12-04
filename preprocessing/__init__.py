@@ -1,1 +1,1 @@
-from .cleaning_data import preprocess
+from .Cleaner import Cleaner_SalesData
