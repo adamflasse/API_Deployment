@@ -272,6 +272,7 @@ if __name__=="__main__":
     #url = 'https://raw.githubusercontent.com/FrancescoMariottini/project3/main/inputs/all_sales_data.csv'
     url_json='input_data.json'
     ss=Cleaner_SalesData(url_json)
+    
     print(ss.cleaning_feature())
 
     #for testing

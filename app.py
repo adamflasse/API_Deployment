@@ -30,7 +30,7 @@ def allowed_file(filename):
 
 
 # @app.route('/predict/<uuid>', methods=["POST", "GET"])
-@app.route('/prediction', methods=["POST", "GET"])
+@app.route('/predict', methods=["POST", "GET"])
 def predict_page():
     # content = request.get_json()
     if request.method == 'POST':
@@ -50,9 +50,9 @@ def predict_page():
 
         # we saved new json file inside Datasets folder. 
         # Now, we call it with process function and then we pass it through our model.
-            compatible_df = preprocess(file.filename)
-            linreg = model_func()
-            y_pred_new = predict(compatible_df, linreg) 
+            cleaned_json_df = preprocess(file.filename)
+            model = model_func()
+            y_pred_new = predict(cleaned_json_df, model) 
             y_pred_new = str(y_pred_new)
 
             return render_template("predict.html", price_predicted=y_pred_new ) 
