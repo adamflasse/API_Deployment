@@ -9,9 +9,11 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import make_column_transformer
 from sklearn.model_selection import cross_val_score
+import os
 
 def model_func():
-    data = pd.read_csv('../Datasets/def_dataset.csv')
+    print(os.getcwd())
+    data = pd.read_csv('Datasets/def_dataset.csv')
 
     df = data.drop(['source', 'garden', 'terrace', 'basement'], axis=1)
 

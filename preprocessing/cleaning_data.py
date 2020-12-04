@@ -3,8 +3,9 @@ import pandas as pd
 import os
 
 
-def preprocess():
-    new_input = pd.read_json('../Datasets/input_data.json', orient='index')
+def preprocess(new_json):
+    path = 'Datasets/'+str(new_json)
+    new_input = pd.read_json(path, orient='index')
     compatible_df = pd.DataFrame()
     compatible_df['property_subtype'] = new_input['property-type']
     compatible_df['area'] = new_input['area']

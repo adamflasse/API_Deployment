@@ -1,10 +1,8 @@
 import pandas as pd
-import sys
-sys.path.append("..")
-from preprocessing import preprocess
-from model import model_func
+import os
 
 def predict(new_df, linreg):
+    print(os.getcwd())
     #new_df = pd.read_json(json_file_name, orient='index')
     new_df[['GOOD', 'JUST RENOVATED', 'NEW',
        'TO REBUILD', 'TO RENOVATE', "APARTMENT", "HOUSE", "OTHERS"]] = 0
@@ -19,10 +17,7 @@ def predict(new_df, linreg):
     
     return y_pred_new
 
-compatible_df = preprocess()
-linreg = model_func()
-y_pred_new = predict(compatible_df, linreg)
-print(y_pred_new)
+
 
 
 
