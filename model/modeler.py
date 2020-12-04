@@ -31,7 +31,6 @@ def model_func():
     df3 = pd.get_dummies(df['building_state_agg'])
     df.drop(['property_subtype', 'building_state_agg'], axis=1, inplace=True)
     df = pd.concat([df, df2, df3], axis=1)  
-    print(df.columns)
 
     # Prediction target
     y = df.price
