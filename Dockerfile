@@ -5,10 +5,10 @@ RUN : mkdir /app \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         software-properties-common \
     && add-apt-repository -y ppa:deadsnakes \
+    && apt-get update && apt-get upgrade -y \
+    && apt-get install python3.8 -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3.8-venv \
-    && apt-get update && apt-get upgrade -y \
-    && apt-get install python3.8 -y
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
