@@ -37,8 +37,6 @@ class Cleaner_SalesData:
         # #33333333333333333333333333333333333333333333333333333
 
 
-
-
         ###################################
         ###################################
         #######    Check Obligation Features
@@ -177,6 +175,18 @@ class Cleaner_SalesData:
         # #"property-type": "APARTMENT" | "HOUSE" | "OTHERS",
         self.sales_data['property-type']=self.sales_data['property-type'].apply(lambda x: Cleaner_SalesData.property_or_keep(x))
         self.sales_data['property-type']= self.sales_data['property-type'].fillna(0)
+        ######## generate dummies
+        # create dummies, the prefix "", store it in another varialbe
+        dummies_region = pd.get_dummies(self.sales_data['property-type'], prefix="property-type")
+        # concatenate, dummies with the original df
+        self.sales_data = pd.concat([self.sales_data, dummies_region], axis=1, sort=False)
+        # drop the region
+        self.sales_data.drop('property-type', axis="columns", inplace=True)
+        # we need to add extra 2-cols here to get the same size of the X-train
+        self.sales_data['property-type_2'] = np.zeros(self.sales_data['area'].shape[0])
+        self.sales_data['property-type_3'] = np.zeros(self.sales_data['area'].shape[0])
+
+
 
         #"full-address": Optional[str],
         if 'full-address' in self.sales_data.columns:
@@ -190,11 +200,60 @@ class Cleaner_SalesData:
         if 'building-state' in self.sales_data.columns:
             self.sales_data['building-state'] = self.sales_data['building-state'].apply(lambda x: Cleaner_SalesData.categorize_state(x))
             self.sales_data['building-state'] = self.sales_data['building-state'].fillna(0)
-        else:
-            self.sales_data['building-state'] = np.zeros(self.sales_data['area'].shape[0])
-            self.sales_data['building-state'] = self.sales_data['building-state'].apply(lambda x: str(x))
+            #### if buildin-state is exist, the generate dummies
+            # get the dummies of categorize_state:::: Optional["NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD"]
+            # create dummies, the prefix "", store it in another varialbe
+            dummies_region = pd.get_dummies(self.sales_data['building-state'] , prefix="building-state")
+            # concatenate, dummies with the original df
+            self.sales_data= pd.concat([self.sales_data, dummies_region], axis=1, sort=False)
+            # drop the region
+            self.sales_data.drop('building-state', axis="columns", inplace=True)  # drop_first="True" if we need to drop the first one
+            self.sales_data['building-state_2'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_3'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_4'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_5'] = np.zeros(self.sales_data['area'].shape[0])
 
+
+        else:
+            #if not exist, generate dummies hard coded
+            self.sales_data['building-state_NEW'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_GOOD'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_TO RENOVATE'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_JUST RENOVATED'] = np.zeros(self.sales_data['area'].shape[0])
+            self.sales_data['building-state_TO REBUILD'] = np.zeros(self.sales_data['area'].shape[0])
+            #self.sales_data['building-state'] = self.sales_data['building-state'].apply(lambda x: str(x))
+
+
+        ############# drop full-adrees, we do not use it in the prediction
+        self.sales_data.drop('full-address', axis='columns', inplace=True)
+        #
+        # features = [
+        #     'property_subtype_Apartment',
+        #                     'property_subtype_House', 'property_subtype_Other', 'building_state_agg_GOOD',
+        #                     'building_state_agg_JUST RENOVATED', 'building_state_agg_NEW',
+        #                     'building_state_agg_TO REBUILD', 'building_state_agg_TO RENOVATE']
+        #
+        #store the features according to the training data set
+
+        # ['area', 'rooms-number', 'zip-code', 'land-area', 'garden', 'garden-area', 'equipped-kitchen', 'swimmingpool',
+        #  'furnished', 'open-fire', 'terrace', 'terrace-area', 'facades-number', 'property-type_APARTMENT',
+        #  'building-state_NEW']
+        #
+        # self.sales_data=self.sales_data[['zip-code','area','rooms-number','garden','garden-area','terrace','terrace-area',
+        #         'land-area','property-type_APARTMENT','property-type_HOUSE','property-type_OTHERS',]]
+        #this is a vector that I have to return
+        # X_test=self.sales_data.values
         return(self.sales_data.to_dict('index'))
+        #return (self.sales_data.columns.tolist())
+
+
+
+
+
+
+
+
+
 
     @staticmethod
     def categorize_state(value):
