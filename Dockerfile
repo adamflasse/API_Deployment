@@ -16,6 +16,10 @@ RUN : mkdir /app \
 COPY requirements.txt /app/
 COPY app.py /app/app.py
 COPY templates /app/templates
+COPY Datasets /app/Datasets
+COPY model /app/model
+COPY predict /app/predict
+COPY preprocessing /app/preprocessing
 
 WORKDIR /app
 
