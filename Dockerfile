@@ -7,6 +7,8 @@ RUN : mkdir /app \
     && add-apt-repository -y ppa:deadsnakes \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3.8-venv \
+    && apt-get update && apt-get upgrade -y \
+    && apt-get install python3.8 -y
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
