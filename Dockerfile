@@ -20,7 +20,7 @@ COPY preprocessing /app/preprocessing
 
 WORKDIR /app
 
-# ENV VIRTUAL_ENV=/opt/venv
+
 # # RUN python3 -m venv $VIRTUAL_ENV
 # # Activation of virtualenv
 # ENV PATH="$VIRTUAL_ENV/bin:$PATH"
@@ -30,6 +30,9 @@ RUN alias python3=/usr/bin/python3.8 \
 
 RUN python3 -m venv /opt/venv
 RUN . /opt/venv/bin/activate
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 RUN pip3 install --upgrade setuptools
 
 RUN pip3 --no-cache-dir install -r requirements.txt \
