@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd 
 import os
+import re
 import json
 
 """ 
@@ -39,6 +40,25 @@ class Cleaner_SalesData:
             raise Exception("We can not provide prediction, please input rooms-number feature in your data")
         else:
             pass
+        
+
+        #check if you entered proper feature
+        ### zip-code checking
+        legal_belgian_postcode_pattern = '[1-9][0-9][0-9][0-9]'
+        if ('zip-code' in self.sales_data.columns):
+            to_check=self.sales_data['zip-code'].values
+            #print(to_check[0])
+            # check if the input is number
+            if str(to_check[0]).isdigit():
+                #check if the entry is correct Belgian zip-code
+                extracted_postcodes = re.findall(legal_belgian_postcode_pattern, str(to_check[0]))
+                if len(extracted_postcodes) > 0:
+                    pass
+                else:
+                    raise Exception("Please, input correct zip-code")
+            else:
+                raise Exception("Please, input number zip-code")
+
 
         ###################################
         ###################################
