@@ -10,6 +10,11 @@ def predict(cleaned_json_df, model):
 
     y_pred_new = modele.predict(X_new_json)
 
+    # to round these number to make it readable ini html
+    for i, y_pred in enumerate(y_pred_new):
+        y_pred_new[i] = round(y_pred)
+
+
     return y_pred_new
 
 

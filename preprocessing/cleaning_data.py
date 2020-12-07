@@ -18,10 +18,11 @@ class Cleaner_SalesData:
         self.cleaned = False
 
     def cleaning_feature(self):
-        openfile = open(self.url_json)
-        jsondata = json.load(openfile)
-        self.sales_data= pd.DataFrame([jsondata["0"]])
-        openfile.close()
+        self.sales_data = pd.read_json(self.url_json, orient='index')
+        #openfile = open(self.url_json)
+        #jsondata = json.load(openfile)
+        #self.sales_data= pd.DataFrame([jsondata["0"]])
+        #openfile.close()
 
         ###################################
         #######    Check Obligation Features
@@ -284,4 +285,4 @@ def preprocess(new_json_name):
     cleaned_json_df.drop(['property_subtype', 'building_state'], axis=1, inplace=True)
     cleaned_json_df = cleaned_json_df.astype('float64')
 
-    return cleaned_json_df
+    return new_json_df, cleaned_json_df

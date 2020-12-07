@@ -50,12 +50,11 @@ def predict_page():
 
         # we saved new json file inside Datasets folder. 
         # Now, we call it with process function and then we pass it through our model.
-            cleaned_json_df = preprocess(file.filename)
+            original_json_df, cleaned_json_df = preprocess(file.filename)
             model = model_func()
             y_pred_new = predict(cleaned_json_df, model) 
-            y_pred_new = str(y_pred_new)
 
-            return render_template("predict.html", price_predicted=y_pred_new ) 
+            return render_template("predict.html", original_json_df= original_json_df, len=len(y_pred_new), price_predicted=y_pred_new) 
     else:
         return '''
                 <html>
