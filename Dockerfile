@@ -25,7 +25,7 @@ WORKDIR /app
 
 SHELL [ "/bin/bash", "-c" ]
 CMD ["python", "app.py", "/bin/bash" ]
-
+RUN pip freeze requirements.txt
 
 RUN python3.8 -m venv /venv
 ENV PATH=/venv/bin:$PATH
