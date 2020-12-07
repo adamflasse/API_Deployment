@@ -22,6 +22,7 @@ COPY predict /app/predict
 COPY preprocessing /app/preprocessing
 
 WORKDIR /app
+RUN pip install -r requirements.txt #freeze requirements.txt
 
 SHELL [ "/bin/bash", "-c" ]
 CMD ["python", "app.py", "/bin/bash" ]
