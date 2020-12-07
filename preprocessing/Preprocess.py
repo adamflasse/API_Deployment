@@ -1,3 +1,7 @@
+import pandas as pd
+from Cleaner import Cleaner_SalesData
+import json
+
 def preprocess(new_json_name):
     url_json='Datasets/'+str(new_json_name)
     #url_json = 'input_data.json'
