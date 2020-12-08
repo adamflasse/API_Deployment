@@ -271,8 +271,8 @@ class Cleaner_SalesData:
             else:
                 return None
 
-def preprocess(new_json_name):
-    url_json='Datasets/'+str(new_json_name)
+def preprocess(original_json_df):
+    url_json=original_json_df
     #url_json = 'input_data.json'
     ss=Cleaner_SalesData(url_json)
     new_json_df = ss.cleaning_feature()
@@ -305,4 +305,4 @@ def preprocess(new_json_name):
     cleaned_json_df.drop(['property_subtype', 'building_state'], axis=1, inplace=True)
     cleaned_json_df = cleaned_json_df.astype('float64')
 
-    return new_json_df, cleaned_json_df
+    return cleaned_json_df
