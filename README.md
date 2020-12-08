@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/adamflasse/take_advantage_of_regression">
+  <a href="https://github.com/adamflasse/Api_deployment">
     <img src="assets/BecodeLogo.png" alt="Logo" width="240" height="180">
   </a>
 
@@ -25,11 +25,11 @@
 * [Getting Started](#getting-started)
   * [Choosing the dataset](#choosing-the-dataset)
   * [Set Work Objectives](#set-work-objectives)
-* [Data cleaning](#data-cleaning)
-* [Data formatting](#data-formatting)
-* [Selected models](#selected-models)
-* [Evaluation](#evaluation)
-* [How went our project?](#how-went-our-project?)
+* [JSON File preprocessing](#JSON-File-preprocessing)
+* [How did we handle the optionals ?](#How-did-we-handle-the-optionals-?)
+* [What about the errors ?](#What-about-the-errors-?)
+* [API](#API)
+* [Outputs](#outputs)
 
 
 
@@ -97,7 +97,7 @@ The JSON format is the folling:
 
 
 <!-- CONTRIBUTING -->
-## How did we handle the errors ? 
+## What about the errors ? 
 
 
 
