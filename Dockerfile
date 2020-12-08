@@ -9,11 +9,9 @@ RUN : mkdir /app \
     # && update-alternatives  --set python /usr/bin/python3.8 \
     && :
     
-RUN pip3 install gunicorn
 
 COPY requirements.txt /app/
 COPY app.py /app/app.py
-COPY templates /app/templates
 COPY Datasets /app/Datasets
 COPY model /app/model
 COPY predict /app/predict
@@ -42,5 +40,4 @@ RUN pip3 --no-cache-dir install -r requirements.txt \
 
 SHELL [ "/bin/bash", "-c" ]
 CMD ["python", "app.py", "/bin/bash" ]
-
 
