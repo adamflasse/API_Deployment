@@ -12,18 +12,21 @@ and return a dictionary, that has the same structure of the input JSON dictionar
 
 class Cleaner_SalesData:
     """ Utility class that cleans real estate sale offers data from a CSV file into a pandas DataFrame for further work on it"""
-    def __init__(self, url_json):
+    def __init__(self, json_file):
         # self.url = url
-        self.url_json = url_json
+        self.json_file = json_file
         self.sales_data = None
         self.cleaned = False
 
     def cleaning_feature(self):
-        self.sales_data = pd.read_json(self.url_json, orient='index')
-        #openfile = open(self.url_json)
-        #jsondata = json.load(openfile)
-        #self.sales_data= pd.DataFrame([jsondata["0"]])
-        #openfile.close()
+        # Serializing json  
+        json_object = json.dumps(self.json_file, indent = 4) 
+          
+        # Writing to sample.json 
+        with open("Datasets/sample.json", "w") as outfile: 
+            outfile.write(json_object) 
+
+        self.sales_data = pd.read_json("Datasets/sample.json", orient='index')
 
         ###################################
         #######    Check Obligation Features
@@ -271,10 +274,9 @@ class Cleaner_SalesData:
             else:
                 return None
 
-def preprocess(original_json_df):
-    url_json=original_json_df
+def preprocess(json_file):
     #url_json = 'input_data.json'
-    ss=Cleaner_SalesData(url_json)
+    ss=Cleaner_SalesData(json_file)
     new_json_df = ss.cleaning_feature()
 
     cleaned_json_df = pd.DataFrame()
