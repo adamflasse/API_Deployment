@@ -15,10 +15,8 @@ def index():
     else:
         return "Server not working"
 
-# @app.route('/predict/<uuid>', methods=["POST", "GET"])
 @app.route('/predict', methods=["POST", "GET"])
 def predict_page():
-    # content = request.get_json()
     if request.method == 'POST':
 
         response = {}
@@ -37,6 +35,21 @@ def predict_page():
         response["prediction"] = y_pred_new
 
         return jsonify(response)
+    elif request.method == 'GET':
+        return """<xmp>
+            Here is the data format for the POST request:
+            {
+            'area': int,
+            'property-type': 'APARTMENT' | 'HOUSE' | 'OTHERS',
+            'rooms-number': int,
+            'zip-code': int,
+            'garden' : Optional[bool],
+            'equipped-kitchen': Optional[bool],
+            'furnished': Opional[bool],
+            'terrace': Optional[bool],
+            'facades-number': Optional[int]
+            }
+            </xmp>"""
     else:
         var = 'Please make a POST request with a JSON object of this format: { "property-type": "APARTMENT" | "HOUSE" | "OTHERS", "area": int, "rooms-number": int, "zip-code": int, "garden": Optional[bool], "garden-area": Optional[int], "terrace": Optional[bool], "terrace-area": Optional[int], "facades-number": Optional[int], "building-state": Optional["NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD"], "equipped-kitchen": Optional[bool], "furnished": Optional[bool], "open-fire": Optional[bool], "swimmingpool": Optional[bool], "land-area": Optional[int], "full-address": Optional[str] }'
 

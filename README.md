@@ -23,11 +23,11 @@
 * [About the Project](#about-the-project)
   
 * [Getting Started](#getting-started)
-  * [Choosing the dataset](#choosing-the-dataset)
-  * [Set Work Objectives](#set-work-objectives)
+  * [Choosing the model](#choosing-the-model)
+  * [Setting Work Objectives](#setting-work-objectives)
 * [JSON File preprocessing](#JSON-File-preprocessing)
-* [How did we handle the optionals ?](#How-did-we-handle-the-optionals-?)
-* [What about the errors ?](#What-about-the-errors-?)
+  * [How did we handle the optionals ?](#How-did-we-handle-the-optionals-?)
+  * [What about the errors ?](#What-about-the-errors-?)
 * [API](#API)
 * [Outputs](#outputs)
 
@@ -64,8 +64,9 @@ We had to split the tasks. So we can work paralelly to go further. We've schedul
 ## JSON File preprocessing
 
 The Api accepts a posted JSON file. We have to work the data so it can fit the features to predict the price of the house. 
-The JSON format is the folling:
+The JSON format is the following:
 
+```
 {
     "data": {
             "area": int,
@@ -77,8 +78,8 @@ The JSON format is the folling:
             "garden-area": Optional[int],
             "equipped-kitchen": Optional[bool],
             "full-address": Optional[str],
-            "swimmingpool": Opional[bool],
-            "furnished": Opional[bool],
+            "swimmingpool": Optional[bool],
+            "furnished": Optional[bool],
             "open-fire": Optional[bool],
             "terrace": Optional[bool],
             "terrace-area": Optional[int],
@@ -86,19 +87,25 @@ The JSON format is the folling:
             "building-state": Optional["NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD"]
     }
 }
-
+```
 
 
 
 <!-- ROADMAP -->
-## How did we handle the optionals ? 
+### How did we handle the optionals ? 
 
-
+Basically if one of the optionals doesn't exist we look at the type of the building (which is a required parameter) and then provide you a default feature based on the building type that you provided. 
 
 
 <!-- CONTRIBUTING -->
-## What about the errors ? 
+### What about the errors ? 
 
+We have different errors that are handled by the API.
+
+It mainly concerns the required parameters because the optionals are handled by the default models.
+
+* The `zip-code` has to be between 1000 and 9999 ( There are no postcode existing in Belgium smaller nor higher than these values ) 
+* The required parameters has to be filled correctly otherwise you will get an error. You can refer to the JSON provided earlier. 
 
 
 
@@ -113,6 +120,9 @@ We have 2 routes:
 
 ## Outputs
 
+When at least the required parameters are filled, the API will return a string with the price (as a float) in it.
+
+Otherwise it will show a error message, directing you to this page. 
 
 
 
@@ -120,8 +130,9 @@ We have 2 routes:
 
 
 
-<!-- CONTACT -->
-## How went our project?
+
+
+
 
 
 
