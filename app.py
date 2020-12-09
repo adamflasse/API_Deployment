@@ -31,6 +31,21 @@ def predict_page():
         response["prediction"] = y_pred_new
 
         return jsonify(response)
+    elif request.method == 'GET':
+        return """<xmp>
+            Here is the data format for the POST request:
+            {
+            'area': int,
+            'property-type': 'APARTMENT' | 'HOUSE' | 'OTHERS',
+            'rooms-number': int,
+            'zip-code': int,
+            'garden' : Optional[bool],
+            'equipped-kitchen': Optional[bool],
+            'furnished': Opional[bool],
+            'terrace': Optional[bool],
+            'facades-number': Optional[int]
+            }
+            </xmp>"""
     else:
         return 
         response['error'] = "no input json"
