@@ -15,10 +15,8 @@ def index():
     else:
         return "Server not working"
 
-# @app.route('/predict/<uuid>', methods=["POST", "GET"])
 @app.route('/predict', methods=["POST", "GET"])
 def predict_page():
-    # content = request.get_json()
     if request.method == 'POST':
 
         response = {}
