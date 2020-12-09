@@ -31,6 +31,7 @@ class Cleaner_SalesData:
         ###################################
         #Obligation, area
         for key, property_dict in self.json_file.items():
+
             one_property = pd.DataFrame([property_dict])
             try:
                 area = property_dict['area']
@@ -51,20 +52,9 @@ class Cleaner_SalesData:
 
             #check if you entered proper feature
             ### zip-code checking
-            legal_belgian_postcode_pattern = '[1-9][0-9][0-9][0-9]'
-            if ('zip-code' in one_property.columns):
-                to_check=one_property['zip-code'].values
-                #print(to_check[0])
-                # check if the input is number
-                if str(to_check[0]).isdigit():
-                    #check if the entry is correct Belgian zip-code
-                    extracted_postcodes = re.findall(legal_belgian_postcode_pattern, str(to_check[0]))
-                    if len(extracted_postcodes) > 0:
-                        pass
-                    else:
-                        return "Please, input correct zip-code"
-                else:
-                    return "Please, input number zip-code"
+            postcode = property_dict['zip-code']
+            if postcode < 1000 or postcode > 10000:
+                return "Wrong zipcode"
 
             default_model = Cleaner_SalesData.building_default_model(one_property['property-type'].values[0], one_property['area'].values[0])
 
@@ -217,6 +207,8 @@ class Cleaner_SalesData:
             category = "NEW"
         elif value in to_rebuild:
             category = "TO REBUILD"
+        else:
+            category = 'GOOD'
         return category
 
     def manage_AreaFeature(self, Ser):

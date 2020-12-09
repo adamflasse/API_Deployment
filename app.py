@@ -40,15 +40,24 @@ def predict_page():
         return """<xmp>
             Here is the data format for the POST request:
             {
-            'area': int,
-            'property-type': 'APARTMENT' | 'HOUSE' | 'OTHERS',
-            'rooms-number': int,
-            'zip-code': int,
-            'garden' : Optional[bool],
-            'equipped-kitchen': Optional[bool],
-            'furnished': Opional[bool],
-            'terrace': Optional[bool],
-            'facades-number': Optional[int]
+                "data": {
+                        "area": int,
+                        "property-type": "APARTMENT" | "HOUSE" | "OTHERS",
+                        "rooms-number": int,
+                        "zip-code": int,
+                        "land-area": Optional[int],
+                        "garden": Optional[bool],
+                        "garden-area": Optional[int],
+                        "equipped-kitchen": Optional[bool],
+                        "full-address": Optional[str],
+                        "swimmingpool": Opional[bool],
+                        "furnished": Opional[bool],
+                        "open-fire": Optional[bool],
+                        "terrace": Optional[bool],
+                        "terrace-area": Optional[int],
+                        "facades-number": Optional[int],
+                        "building-state": Optional["NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD"]
+                }
             }
             </xmp>"""
     
