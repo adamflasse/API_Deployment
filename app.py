@@ -35,6 +35,7 @@ def predict_page():
         response["prediction"] = y_pred_new
 
         return jsonify(response)
+    
     elif request.method == 'GET':
         return """<xmp>
             Here is the data format for the POST request:
@@ -50,10 +51,7 @@ def predict_page():
             'facades-number': Optional[int]
             }
             </xmp>"""
-    else:
-        var = 'Please make a POST request with a JSON object of this format: { "property-type": "APARTMENT" | "HOUSE" | "OTHERS", "area": int, "rooms-number": int, "zip-code": int, "garden": Optional[bool], "garden-area": Optional[int], "terrace": Optional[bool], "terrace-area": Optional[int], "facades-number": Optional[int], "building-state": Optional["NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD"], "equipped-kitchen": Optional[bool], "furnished": Optional[bool], "open-fire": Optional[bool], "swimmingpool": Optional[bool], "land-area": Optional[int], "full-address": Optional[str] }'
-
-        return var
+    
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=port)
