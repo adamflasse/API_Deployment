@@ -5,8 +5,8 @@
     <img src="assets/BecodeLogo.png" alt="Logo" width="240" height="180">
   </a>
 
-  <h1 align="center">Take advantage of regression</h1>
-  <h3 align="center">Becode project to test our skills about regression</h3>
+  <h1 align="center">API Deployment</h1>
+  <h3 align="center">Becode project to deploy a machine learning model API</h3>
 
   <p align="center">
     by Saba Y., Didier U., Emre O. and Adam F.
