@@ -1,43 +1,19 @@
 FROM ubuntu:18.04
+FROM python:3.8
 
-RUN : mkdir /app \
-    && apt-get update -y \
-    && apt-get install python3.8 -y \
-    &&  apt-get install python3-pip -y \
-    && apt-get install python3.8-dev -y \
-    && apt-get install vim nano -y \
-    # && update-alternatives  --set python /usr/bin/python3.8 \
-    && :
-    
+RUN apt-get update -y 
+RUN pip3 install -U scikit-learn
 
-COPY requirements.txt /app/
+RUN mkdir /app 
+COPY requirements.txt .
 COPY app.py /app/app.py
 COPY Datasets /app/Datasets
 COPY model /app/model
 COPY predict /app/predict
 COPY preprocessing /app/preprocessing
 
+RUN pip install -r requirements.txt
+
 WORKDIR /app
 
-
-# # RUN python3 -m venv $VIRTUAL_ENV
-# # Activation of virtualenv
-# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-RUN alias python3=/usr/bin/python3.8 \
-    && apt-get install python3-venv -y
-
-RUN python3 -m venv /opt/venv
-RUN . /opt/venv/bin/activate
-ENV VIRTUAL_ENV=/opt/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-RUN pip3 install --upgrade setuptools
-
-RUN pip3 --no-cache-dir install -r requirements.txt \
-    && pip3 install -U scikit-learn
-
-
-SHELL [ "/bin/bash", "-c" ]
-CMD ["python", "app.py", "/bin/bash" ]
-
+CMD ["python", "app.py"]
