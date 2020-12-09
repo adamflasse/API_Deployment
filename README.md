@@ -24,10 +24,10 @@
   
 * [Getting Started](#getting-started)
   * [Choosing the model](#choosing-the-model)
-  * [Set Work Objectives](#set-work-objectives)
+  * [Setting Work Objectives](#setting-work-objectives)
 * [JSON File preprocessing](#JSON-File-preprocessing)
-* [How did we handle the optionals ?](#How-did-we-handle-the-optionals-?)
-* [What about the errors ?](#What-about-the-errors-?)
+  * [How did we handle the optionals ?](#How-did-we-handle-the-optionals-?)
+  * [What about the errors ?](#What-about-the-errors-?)
 * [API](#API)
 * [Outputs](#outputs)
 
@@ -64,7 +64,7 @@ We had to split the tasks. So we can work paralelly to go further. We've schedul
 ## JSON File preprocessing
 
 The Api accepts a posted JSON file. We have to work the data so it can fit the features to predict the price of the house. 
-The JSON format is the folling:
+The JSON format is the following:
 
 ```
 {
