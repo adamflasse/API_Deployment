@@ -30,6 +30,7 @@
   * [What about the errors ?](#What-about-the-errors-?)
 * [API](#API)
 * [Outputs](#outputs)
+* [Links](#links)
 
 
 
@@ -125,11 +126,81 @@ When at least the required parameters are filled, the API will return a string w
 Otherwise it will show a error message, directing you to this page. 
 
 
+## Use case example with Postman
+
+Let's say you've filled out all the JSON file properly and it looks like something like this :
+
+```
+{
+    "data": {
+            "area": 100,
+            "property-type": "APARTMENT",
+            "rooms-number": 4,
+            "zip-code": 7000,
+            "land-area": 130,
+            "garden": true,
+            "garden-area": 30,
+            "equipped-kitchen": true,
+            "swimmingpool": false,
+            "furnished": true,
+            "open-fire": false,
+            "terrace": false,
+            "terrace-area": 0,
+            "facades-number": 3,
+            "building-state": "NEW"
+    }
+}
+```
+
+(The number of each step is referenced in the image below)
+
+* 1) Select the `POST` request
+* 2) Click on `Body`
+* 3) Click on `Raw` then copy and paste the JSON file above (or one of your own that respect the criterias will be fine) in the `ÌNPUT` section
+* 4) Choose `JSON`for the type of document
+* 5) Click on `SEND`
+
+The prediction will be shown in the output section
+
+<br />
+<p align="center">
+  <a href="https://github.com/adamflasse/Api_deployment">
+    <img src="assets/Capture d’écran 2020-12-11 à 16.57.43.png" alt="Image" width="400" height="250">
+  </a>
+
+ 
+</p>
+
+
+Note that the link being used ``http://0.0.0.0:5000/predict``is a test url. 
+The urls working will be shared in the [Links](#links) section.
+
+
+If all the required parameters are correctly filled, the output will be:
+
+
+```
+{
+    "prediction": [
+        (prediction price)
+    ]
+} 
+```
+
+If not :
+
+```
+{
+    "error": "We can not provide prediction, please input rooms-number feature in your data. Please check: https://github.com/adamflasse/Api_deployment/blob/main/README.md for more info"
+}
+```
 
 
 
 
+## Links
 
+Urls working: 
 
 
 
