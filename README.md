@@ -30,6 +30,7 @@
   * [What about the errors ?](#What-about-the-errors-?)
 * [API](#API)
 * [Outputs](#outputs)
+* [Use case example with Postman](#use-case-example-with-postman)
 * [Links](#links)
 
 
@@ -163,7 +164,7 @@ Let's say you've filled out all the JSON file properly and it looks like somethi
 The prediction will be shown in the output section
 
 <br />
-<p align="center">
+<p align="left">
   <a href="https://github.com/adamflasse/Api_deployment">
     <img src="assets/Capture d’écran 2020-12-11 à 16.57.43.png" alt="Image" width="400" height="250">
   </a>
@@ -172,8 +173,8 @@ The prediction will be shown in the output section
 </p>
 
 
-Note that the link being used ``http://0.0.0.0:5000/predict``is a test url. 
-The urls working will be shared in the [Links](#links) section.
+Note that the link being used ``http://0.0.0.0:5000/predict`` is a test url. 
+The urls working will be displayed in the [Links](#links) section.
 
 
 If all the required parameters are correctly filled, the output will be:
