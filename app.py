@@ -1,4 +1,6 @@
 from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
+import logging
+from flask_cors import CORS  # The typical way to import flask-cors
 from preprocessing import preprocess
 from model import model_func
 from predict import predict
@@ -7,8 +9,12 @@ import os
 
 app = Flask("__name__")
 port = int(os.environ.get("PORT", 5000))
+logging.basicConfig(level=logging.INFO)
+#cors = CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources=r'/*', allow_headers='Content-Type')
 
 @app.route('/', methods=["GET"])
+#@cross_origin(allow_headers=['Content-Type'])
 def index():
     if request.method == "GET":
         return "Alive"
