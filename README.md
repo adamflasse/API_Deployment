@@ -204,6 +204,16 @@ If not :
 Urls working: 
 
 
+## How to build a flask application in Heroku
+```python
+heroku login
+heroku container:login
+heroku create
+heroku container:push web -a <heroku repository name>
+heroku container:release web -a <heroku repository name>
+```
+
+
 
 
 
