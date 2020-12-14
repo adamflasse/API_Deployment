@@ -213,7 +213,7 @@ heroku container:push web -a <heroku repository name>
 heroku container:release web -a <heroku repository name>
 ```
 click -> 
-https://<heroku repository name>.herokuapp.com
+https://<heroku-repository-name>.herokuapp.com
 
 
 
